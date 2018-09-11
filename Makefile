@@ -16,8 +16,8 @@ prefix.iso:
 bootp.iso: kernel.bin
 	./makeBootp.bash
 
-kernel.bin: linker.ld boot.o kernel.o serial.o mem.o
-	i686-elf-gcc -g -T linker.ld -o kernel.bin -ffreestanding -O2 -nostdlib boot.o kernel.o serial.o mem.o -lgcc
+kernel.bin: linker.ld boot.o kernel.o serial.o mem.o ints.o
+	i686-elf-gcc -g -T linker.ld -o kernel.bin -ffreestanding -O2 -nostdlib boot.o kernel.o serial.o mem.o ints.o -lgcc
 
 boot.o: boot.s
 	i686-elf-as boot.s -o boot.o
@@ -26,13 +26,16 @@ kernel.o: kernel.c
 	i686-elf-gcc -g -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
 clean:
-	rm -f boot.o kernel.o disk.iso bootp.iso kernel.bin serial.o mem.o
+	rm -f boot.o kernel.o disk.iso bootp.iso kernel.bin serial.o mem.o ints.o
 
 serial.o: serial.c serial.h
 	i686-elf-gcc -g -c serial.c -o serial.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
 mem.o: mem.c mem.h
 	i686-elf-gcc -g -c mem.c -o mem.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+
+ints.o: ints.c ints.h
+	i686-elf-gcc -g -c ints.c -o ints.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
 dbg: disk.iso
 	qemu-system-i386 -s -S disk.iso -serial file:serial.txt -monitor stdio
