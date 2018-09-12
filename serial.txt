@@ -1,0 +1,3 @@
+"Memes are dank" -- Abraham Lincoln
+Entering procedure kernel_main @ 00100020
+Ignoring interrupt 32

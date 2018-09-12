@@ -27,7 +27,7 @@ const char msg[] = "Hello darkness, my old friend";
     setHandler(32, tickInterrupt);
 
     __asm__ __volatile__("\
-waiting: hlt \n\
+    waiting: hlt \n\
          jmp waiting");
 
 }

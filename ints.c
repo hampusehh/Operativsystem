@@ -55,7 +55,6 @@ uint8_t syscallGlue[] = {
     0xcf                           // iret
 };
 
-// Default handler: fastcall ABI forces the argument into ECX.
 void __attribute__((fastcall)) ignoreInterrupt(uint32_t gateNum)
 {
   intCounters[ gateNum&255 ] ++;
@@ -84,12 +83,31 @@ void __attribute__((fastcall)) tickInterrupt(uint32_t gateNum)
 
 void showCounter(uint32_t position, uint32_t value){
     uint8_t *vga = (uint8_t*)0xb8000;
-    position = position * 10;
-    vga[position + 2] = 0x30;
-    vga[position + 4] = 0x30;
-    vga[position + 6] = 0x30;
-    vga[position + 8] = 0x30;
+    uint8_t opBuff[4] = {'0', '0', '0', '0'};
+
+    numToHex(value, opBuff);
+
+    position = position * 2 * 5;
+    vga[position + 0] = opBuff[3];
+    vga[position + 2] = opBuff[2];
+    vga[position + 4] = opBuff[1];
+    vga[position + 6] = opBuff[0];
+
 }
+
+
+
+void numToHex(uint32_t num, uint8_t *opBuffer)
+{
+    int size=0;
+    while(num>0)
+    {
+        uint8_t dig      = num % 16;
+        opBuffer[size++] = ((dig<10) ? '0' : 'a'-10) + dig;
+        num              = num / 16;
+    }
+}
+
 
 void initInterrupts()
 {

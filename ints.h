@@ -3,3 +3,4 @@ void timer_phase(int hz);
 void __attribute__((fastcall)) tickInterrupt(uint32_t gateNum);
 void initInterrupts();
 void setHandler(uint8_t index, void __attribute__((fastcall)) (*handler)(uint32_t));
+extern uint32_t intCounters[256];
