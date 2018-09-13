@@ -2,46 +2,76 @@ Multiboot: flags=00001a67
 Multiboot: mmap=144 bytes @ 000100ac
 Multiboot: mmap region 0 639K @ 00000000
 Multiboot: mmap region 1 129920K @ 00100000
-Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 0010e410
-Multiboot: ELF section 1 @ 00100000 (3537-bytes) .text
-Multiboot: ELF section 2 @ 00100dd1 (146-bytes) .rodata.str1.1
-Multiboot: ELF section 3 @ 00100e64 (408-bytes) .rodata.str1.4
-Multiboot: ELF section 4 @ 00100ffc (936-bytes) .eh_frame
+Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 00101d47
+Multiboot: ELF section 1 @ 00100000 (3825-bytes) .text
+Multiboot: ELF section 2 @ 00100ef1 (150-bytes) .rodata.str1.1
+Multiboot: ELF section 3 @ 00100f88 (408-bytes) .rodata.str1.4
+Multiboot: ELF section 4 @ 00101120 (936-bytes) .eh_frame
 Multiboot: ELF section 5 @ 00102000 (73-bytes) .data
 Multiboot: ELF section 6 @ 00103000 (29952-bytes) .bss
-Multiboot: ELF section 7 @ 0010a500 (6915-bytes) .debug_info
-Multiboot: ELF section 8 @ 001013a4 (2022-bytes) .debug_abbrev
-Multiboot: ELF section 9 @ 0010c010 (6621-bytes) .debug_loc
-Multiboot: ELF section 10 @ 00101b8a (128-bytes) .debug_aranges
-Multiboot: ELF section 11 @ 00101c0a (784-bytes) .debug_ranges
-Multiboot: ELF section 12 @ 0010d9f0 (1430-bytes) .debug_line
-Multiboot: ELF section 13 @ 0010df90 (1138-bytes) .debug_str
-Multiboot: ELF section 14 @ 00101f1a (17-bytes) .comment
-Multiboot: ELF section 15 @ 0010e410 (182-bytes) .shstrtab
-Multiboot: ELF section 16 @ 0010e4d0 (912-bytes) .symtab
-Multiboot: ELF section 17 @ 0010e860 (469-bytes) .strtab
-Alloc: Allocating frame fc0039
-Alloc: Allocating frame 392f3332
-Alloc: Allocating frame 2f3630f0
-Alloc: Allocating frame e05bea
-Alloc: Allocating frame c36620e6
-Alloc: Allocating frame 20b0c366
-Alloc: Allocating frame 5e665b66
-Alloc: Allocating frame 8c48366
-Alloc: Allocating frame 5b66ffff
-Alloc: Allocating frame e2eee866
-Alloc: Allocating frame d8896600
-Alloc: Allocating frame 1754db9
-Alloc: Allocating frame 66506601
-Alloc: Allocating frame 24448d66
-Alloc: Allocating frame 6702e2c1
-Alloc: Allocating frame 66f60524
-Alloc: Allocating frame 44c6676c
-Alloc: Allocating frame 42444c6
-Alloc: Allocating frame 67032454
-Alloc: Allocating frame 88671053
+Multiboot: ELF section 7 @ 0010a500 (7075-bytes) .debug_info
+Multiboot: ELF section 8 @ 001014c8 (2030-bytes) .debug_abbrev
+Multiboot: ELF section 9 @ 0010c0b0 (6684-bytes) .debug_loc
+Multiboot: ELF section 10 @ 00101cb6 (128-bytes) .debug_aranges
+Multiboot: ELF section 11 @ 0010dad0 (736-bytes) .debug_ranges
+Multiboot: ELF section 12 @ 0010ddb0 (1491-bytes) .debug_line
+Multiboot: ELF section 13 @ 0010e390 (1138-bytes) .debug_str
+Multiboot: ELF section 14 @ 00101d36 (17-bytes) .comment
+Multiboot: ELF section 15 @ 00101d47 (182-bytes) .shstrtab
+Multiboot: ELF section 16 @ 0010e810 (912-bytes) .symtab
+Multiboot: ELF section 17 @ 00101dfd (469-bytes) .strtab
+allocateFrame fc0039
+allocateFrame 392f3332
+allocateFrame 2f3630f0
+allocateFrame e05bea
+allocateFrame c36620e6
+allocateFrame 20b0c366
+allocateFrame 5e665b66
+allocateFrame 8c48366
+allocateFrame 5b66ffff
+allocateFrame e2eee866
+allocateFrame d8896600
+allocateFrame 1754db9
+allocateFrame 66506601
+allocateFrame 24448d66
+allocateFrame 6702e2c1
+allocateFrame 66f60524
+allocateFrame 44c6676c
+allocateFrame 42444c6
+allocateFrame 67032454
+allocateFrame 88671053
+freeFrame fc0039
+freeFrame 392f3332
+freeFrame 2f3630f0
+freeFrame e05bea
+freeFrame c36620e6
+freeFrame 20b0c366
+freeFrame 5e665b66
+freeFrame 8c48366
+freeFrame 5b66ffff
+freeFrame e2eee866
+allocateFrame d8896600
+allocateFrame 1754db9
+allocateFrame 66506601
+allocateFrame 24448d66
+allocateFrame 6702e2c1
+allocateFrame 66f60524
+allocateFrame 44c6676c
+allocateFrame 42444c6
+allocateFrame 67032454
+allocateFrame 88671053
+allocateFrame b70f6667
+allocateFrame 2022444
+allocateFrame c6670124
+allocateFrame 448867f0
+allocateFrame 96602e6
+allocateFrame c166fff1
+allocateFrame 14808b
+allocateFrame 66672e0c
+allocateFrame 438b6667
+allocateFrame 5475c085
 Boot: grub structure at 00010000
-Mem: Placed 878909 pages (3515636-kb) in freeList (3433-kb) 
+Mem: Placed 32465 pages (129860-kb) in freeList (126-kb) 
 Mem: Kernel stack 00105840 - 00109840
 "Memes are dank" -- Abraham Lincoln
 Entering procedure kernel_main @ 00100020

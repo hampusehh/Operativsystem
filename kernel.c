@@ -68,12 +68,22 @@ char     *stable = (char*)stableElfRecord[3];
  uint8_t* frameArray[25];
   for (int i = 0; i < 20; i++) {
     frameArray[i] = allocateFrame();
-    serialPrintf("Alloc: Allocating frame %x\n", frameArray[i]);
+    serialPrintf("allocateFrame %x\n", frameArray[i]);
   }
+
+  for (int i = 0; i < 10; i++) {
+    freeFrame(frameArray[i]);
+    serialPrintf("freeFrame %x\n", frameArray[i]);
+}
+  for (int i = 10; i < 30; i++) {
+    frameArray[i] = allocateFrame();
+    serialPrintf("allocateFrame %x\n", frameArray[i]);
+  }
+
 
   serialPrintf("Boot: grub structure at %08x\n", grubMulti);
 
-  initMemory();
+  initMemory(grubMem, elfLo,elfHi);
   uint8_t *vga = (uint8_t*)0xb8000;
   const char msg[] = "Hello darkness, my old friend";
   for(int i=0; msg[i]!=0; i++)
