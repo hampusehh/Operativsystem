@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "mem.h"
-
+#include "x86.h"
 
 uint8_t   gdtPtr[6];           // 48-bit structure to hold address of GDT.
 uint32_t  theGdt[16*2] = {0};  // The actual GDT
@@ -125,4 +125,64 @@ void initMemory(struct grubMMap *regions,
 	    serialPrintf("Mem: Placed %u pages (%u-kb) in freeList (%u-kb) \n",
 	                 numFree,numFree*4,numFree/256);
 	    serialPrintf("Mem: Kernel stack %08x - %08x\n", stack_bottom, stack_top);
+
+      uint32_t pageDir = (uint32_t)allocateFrame();
+    	setCR3( pageDir );
+    	memset((uint8_t*)pageDir,0,4096);
+    	forceFrameAsPage(pageDir, pageDir);
+    	serialPrintf("Mem: kernel cr3=%08x\n", getCR3());
+    	forceFramesAsPages((uint32_t*)pageDir, freeList, (uint32_t)(freeList+numFree) );
+    	forceFramesAsPages((uint32_t*)pageDir, excludeLo, excludeHi);
+    	activatePaging();
 }
+/*
+	    Write an entry into the kernel page-directory / page-tables to allow the frame
+	    to be accessed as a page, i.e. wire-up 1:1 the address between the virtual and
+	    physical address spaces. If the frame is in a region of memory without a page-
+	    table (1024*4kb=4MB) then a table is allocated (and wired in for access). The
+	    worst case behaviour is if allocateFrame returns a sparse distribution of new
+	    frames so that each table requires a new table to access it - this will consume
+	    4100kb of memory but it will still terminate when the directory is complete.
+	    This does not happen with the dense freeList when the kernel boots.
+	*/
+	void forceFrameAsPage(uint32_t *pageDir, uint32_t frame)
+	{
+	uint32_t *pageTable;
+	uint32_t index = frame>>22;
+	    serialPrintf("Mem: forceFrameAsPage %08x into directory %08x [%u] table %08x\n", frame, pageDir, index, pageDir[index]);
+	    if( pageDir[index]==0 )
+	    {
+	        pageTable = (uint32_t*)allocateFrame();
+	        serialPrintf("Mem: new page-table %08x\n",pageTable);
+	        pageDir[index] = (uint32_t)pageTable | 0x03UL;  // Supervisor|RW|Present
+	        if(pageDir!=getCR3())   // When wiring user-mode dirs make tables kernel-accessible
+	            forceFrameAsPage(getCR3(), pageTable);
+	        forceFrameAsPage(pageDir, (uint32_t)pageTable);
+	        memset((uint8_t*)pageTable,0,4096);
+	        // This looks like a nasty hack, but it is not! Because we are wiring up
+	        // frames as pages with the same addresses it is possible for a page-table
+	        // to contain its own address as an entry inside itself... If this happens
+	        // then the memset just wiped out that entry so we must put it back in to
+	        // continue accessing the page-table in paged mode.
+	        if( ((uint32_t)pageTable>>22) == index )
+	            pageTable[ ((uint32_t)pageTable>>12) & 0x3ffUL ] = (uint32_t)pageTable | 0x03UL;
+	    }
+	    else
+	        pageTable = (uint32_t*)(pageDir[index] & 0xfffff000UL);
+	    index = (frame>>12) & 0x3ff;
+	    pageTable[index] = frame | 0x03UL; // Supervisor|RW|Present
+	}
+
+	void forceFramesAsPages(uint32_t *pageDir, uint32_t loAddress, uint32_t hiAddress)
+	{
+	uint32_t loFrame = loAddress & 0xfffff000UL;
+	uint32_t hiFrame = (hiAddress + 4095UL) & 0xfffff000UL;
+	    for(uint32_t frame = loFrame; frame<=hiFrame; frame+=4096)
+	        forceFrameAsPage(pageDir, frame);
+	}
+
+	void memset(uint8_t *target, uint8_t val, uint32_t size)
+	{
+	    for(uint32_t i=0; i<size; i++)
+	        *(target++) = val;
+	}

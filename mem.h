@@ -9,3 +9,6 @@ struct grubMMap {
 	  uint32_t base;
 	  uint32_t length;
 	};
+void forceFrameAsPage(uint32_t *pageDir, uint32_t frame);
+void forceFramesAsPages(uint32_t *pageDir, uint32_t loAddress, uint32_t hiAddress);
+void memset(uint8_t *target, uint8_t val, uint32_t size);

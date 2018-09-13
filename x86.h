@@ -26,4 +26,26 @@
 	    __asm__ __volatile__("inb %1, %0" : "=a" (result) : "dN" (port));
 	    return result;
 	}
-	
+
+	inline uint32_t *getCR3()
+		{
+		uint32_t *cr3;
+		    __asm__ __volatile__("movl %%cr3, %[val]" : [val] "=g" (cr3));
+		    return cr3;
+		}
+
+		// Write to the control-register 3 (the address of the page-directory).
+		inline void setCR3(uint32_t pagedir)
+		{
+		  __asm__ __volatile__("movl %[val], %%eax; \n\
+		                        movl %%eax, %%cr3" : : [val] "g" (pagedir) : "%eax");
+		}
+
+		// Set the paging flag in the processor control register
+		inline void activatePaging()
+		{
+		    __asm__ __volatile__("                                                  \
+		     movl %%cr0, %%eax;       # Get the current control-flags             \n\
+		     orl  $0x80000000, %%eax  # Switch on paging                          \n\
+		     movl %%eax, %%cr0        # Set the control-flags " : : : "%eax" );
+		}
