@@ -1,3 +1,49 @@
+Multiboot: flags=00001a67
+Multiboot: mmap=144 bytes @ 000100ac
+Multiboot: mmap region 0 639K @ 00000000
+Multiboot: mmap region 1 129920K @ 00100000
+Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 0010e410
+Multiboot: ELF section 1 @ 00100000 (3537-bytes) .text
+Multiboot: ELF section 2 @ 00100dd1 (146-bytes) .rodata.str1.1
+Multiboot: ELF section 3 @ 00100e64 (408-bytes) .rodata.str1.4
+Multiboot: ELF section 4 @ 00100ffc (936-bytes) .eh_frame
+Multiboot: ELF section 5 @ 00102000 (73-bytes) .data
+Multiboot: ELF section 6 @ 00103000 (29952-bytes) .bss
+Multiboot: ELF section 7 @ 0010a500 (6915-bytes) .debug_info
+Multiboot: ELF section 8 @ 001013a4 (2022-bytes) .debug_abbrev
+Multiboot: ELF section 9 @ 0010c010 (6621-bytes) .debug_loc
+Multiboot: ELF section 10 @ 00101b8a (128-bytes) .debug_aranges
+Multiboot: ELF section 11 @ 00101c0a (784-bytes) .debug_ranges
+Multiboot: ELF section 12 @ 0010d9f0 (1430-bytes) .debug_line
+Multiboot: ELF section 13 @ 0010df90 (1138-bytes) .debug_str
+Multiboot: ELF section 14 @ 00101f1a (17-bytes) .comment
+Multiboot: ELF section 15 @ 0010e410 (182-bytes) .shstrtab
+Multiboot: ELF section 16 @ 0010e4d0 (912-bytes) .symtab
+Multiboot: ELF section 17 @ 0010e860 (469-bytes) .strtab
+Alloc: Allocating frame fc0039
+Alloc: Allocating frame 392f3332
+Alloc: Allocating frame 2f3630f0
+Alloc: Allocating frame e05bea
+Alloc: Allocating frame c36620e6
+Alloc: Allocating frame 20b0c366
+Alloc: Allocating frame 5e665b66
+Alloc: Allocating frame 8c48366
+Alloc: Allocating frame 5b66ffff
+Alloc: Allocating frame e2eee866
+Alloc: Allocating frame d8896600
+Alloc: Allocating frame 1754db9
+Alloc: Allocating frame 66506601
+Alloc: Allocating frame 24448d66
+Alloc: Allocating frame 6702e2c1
+Alloc: Allocating frame 66f60524
+Alloc: Allocating frame 44c6676c
+Alloc: Allocating frame 42444c6
+Alloc: Allocating frame 67032454
+Alloc: Allocating frame 88671053
+Boot: grub structure at 00010000
+Mem: Placed 878909 pages (3515636-kb) in freeList (3433-kb) 
+Mem: Kernel stack 00105840 - 00109840
 "Memes are dank" -- Abraham Lincoln
 Entering procedure kernel_main @ 00100020
 Ignoring interrupt 32
+Ignoring interrupt 33

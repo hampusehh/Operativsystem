@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include "mem.h"
 
+
 uint8_t   gdtPtr[6];           // 48-bit structure to hold address of GDT.
 uint32_t  theGdt[16*2] = {0};  // The actual GDT
 uint32_t  systemTSS[26] __attribute__((aligned(4096))) = {0};
@@ -78,24 +79,50 @@ inline void loadTr(uint32_t index)
 }
 
 
-extern uint8_t stack_top[], stack_bottom[];   // asm glue
-void initMemory()
+uint8_t *allocateFrame()
 {
-    // Setup the GDT, entry 0=null
-    encodeMemDescriptor(1, 0,                   0xfffff, CodeType, 0, true);
-    encodeMemDescriptor(2, 0,                   0xfffff, DataType, 0, true);
-    encodeMemDescriptor(3, (uint32_t)systemTSS, 0x67,    TssType,  0, false);
-    encodeMemDescriptor(4, 0,                   0xfffff, CodeType, 3, true);
-    encodeMemDescriptor(5, 0,                   0xfffff, DataType, 3, true);
-    loadGdt();
-    loadTr(3);
-    systemTSS[18] = 16;   // ES
-    systemTSS[19] = 8;    // CS
-    systemTSS[20] = 16;   // SS
-    systemTSS[21] = 16;   // DS
-    systemTSS[22] = 16;   // FS
-    systemTSS[23] = 16;   // GS
-    systemTSS[14] = stack_top;
-    systemTSS[1]  = stack_top;    // Stack for syscalls
-    systemTSS[2]  = 16;           // SS for interrupts
+    return (uint8_t*)freeList[ --numFree ];
+}
+
+void freeFrame(uint8_t *page)
+{
+    freeList[ numFree++] = (uint32_t)page;
+}
+
+extern uint8_t stack_top[], stack_bottom[];   // asm glue
+void initMemory(struct grubMMap *regions,
+                uint32_t excludeLo,   uint32_t excludeHi)
+{
+
+	    // Setup the GDT, entry 0=null
+	    encodeMemDescriptor(1, 0,                   0xfffff, CodeType, 0, true);
+	    encodeMemDescriptor(2, 0,                   0xfffff, DataType, 0, true);
+	    encodeMemDescriptor(3, (uint32_t)systemTSS, 0x67,    TssType,  0, false);
+	    encodeMemDescriptor(4, 0,                   0xfffff, CodeType, 3, true);
+	    encodeMemDescriptor(5, 0,                   0xfffff, DataType, 3, true);
+	    loadGdt();
+	    loadTr(3);
+	    systemTSS[18] = 16;   // ES
+	    systemTSS[19] = 8;    // CS
+	    systemTSS[20] = 16;   // SS
+	    systemTSS[21] = 16;   // DS
+	    systemTSS[22] = 16;   // FS
+	    systemTSS[23] = 16;   // GS
+	    systemTSS[14] = stack_top;
+	    systemTSS[1]  = stack_top;    // Stack for syscalls
+	    systemTSS[2]  = 16;           // SS for interrupts
+
+	    // First region is probably the low 640kb
+	    // Use this as an unsorted (void*)[] of free pages (max 160MB of memory).
+	    freeList = (uint32_t*)regions[0].base;
+	    uint32_t firstPage = (excludeHi + 0xfff) & 0xfffff000;
+	    uint32_t space = regions[1].base + regions[1].length - firstPage;
+	    numFree  = min( regions[0].length / 4,
+	                    space / 4096);
+
+	    for(uint32_t i=0; i<numFree; i++)
+	        freeList[i] = firstPage + i*4096;
+	    serialPrintf("Mem: Placed %u pages (%u-kb) in freeList (%u-kb) \n",
+	                 numFree,numFree*4,numFree/256);
+	    serialPrintf("Mem: Kernel stack %08x - %08x\n", stack_bottom, stack_top);
 }

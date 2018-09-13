@@ -17,9 +17,9 @@
 	.type _start, @function       // Help the debugger
 	_start:
 	        mov $stack_top, %esp  // Set a stack
+        	pushl %ebx            // INSERT THIS LINE TO PASS ADDRESS
 	        call kernel_main      // Run the C code
 	        // Should not return here... but in case...
 	_stop:  cli                   // Disable interrupts
 	        hlt                   // Halt the processor
 	        jmp _stop             // NMI can resume processor
-	
