@@ -49,3 +49,11 @@
 		     orl  $0x80000000, %%eax  # Switch on paging                          \n\
 		     movl %%eax, %%cr0        # Set the control-flags " : : : "%eax" );
 		}
+
+		// Read from the control-register 2 (the address causing a page-fault).
+inline uint32_t *getCR2()
+{
+uint32_t *cr2;
+		__asm__ __volatile__("movl %%cr2, %[val]" : [val] "=g" (cr2));
+		return cr2;
+}

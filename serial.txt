@@ -2,84 +2,34 @@ Multiboot: flags=00001a67
 Multiboot: mmap=144 bytes @ 000100ac
 Multiboot: mmap region 0 639K @ 00000000
 Multiboot: mmap region 1 129920K @ 00100000
-Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 00101c41
-Multiboot: ELF section 1 @ 00100000 (4433-bytes) .text
-Multiboot: ELF section 2 @ 00101151 (198-bytes) .rodata.str1.1
-Multiboot: ELF section 3 @ 00101218 (472-bytes) .rodata.str1.4
-Multiboot: ELF section 4 @ 001013f0 (1216-bytes) .eh_frame
-Multiboot: ELF section 5 @ 00102000 (73-bytes) .data
-Multiboot: ELF section 6 @ 00103000 (29952-bytes) .bss
-Multiboot: ELF section 7 @ 0010a500 (8141-bytes) .debug_info
-Multiboot: ELF section 8 @ 0010c4d0 (2103-bytes) .debug_abbrev
-Multiboot: ELF section 9 @ 0010cd10 (7814-bytes) .debug_loc
-Multiboot: ELF section 10 @ 001018b0 (128-bytes) .debug_aranges
-Multiboot: ELF section 11 @ 00101930 (768-bytes) .debug_ranges
-Multiboot: ELF section 12 @ 0010eba0 (1688-bytes) .debug_line
-Multiboot: ELF section 13 @ 0010f240 (1285-bytes) .debug_str
-Multiboot: ELF section 14 @ 00101c30 (17-bytes) .comment
-Multiboot: ELF section 15 @ 00101c41 (182-bytes) .shstrtab
-Multiboot: ELF section 16 @ 0010f750 (960-bytes) .symtab
-Multiboot: ELF section 17 @ 00101cf7 (512-bytes) .strtab
-allocateFrame fc0039
-allocateFrame 392f3332
-allocateFrame 2f3630f0
-allocateFrame e05bea
-allocateFrame c36620e6
-allocateFrame 20b0c366
-allocateFrame 5e665b66
-allocateFrame 8c48366
-allocateFrame 5b66ffff
-allocateFrame e2eee866
-allocateFrame d8896600
-allocateFrame 1754db9
-allocateFrame 66506601
-allocateFrame 24448d66
-allocateFrame 6702e2c1
-allocateFrame 66f60524
-allocateFrame 44c6676c
-allocateFrame 42444c6
-allocateFrame 67032454
-allocateFrame 88671053
-freeFrame fc0039
-freeFrame 392f3332
-freeFrame 2f3630f0
-freeFrame e05bea
-freeFrame c36620e6
-freeFrame 20b0c366
-freeFrame 5e665b66
-freeFrame 8c48366
-freeFrame 5b66ffff
-freeFrame e2eee866
-allocateFrame d8896600
-allocateFrame 1754db9
-allocateFrame 66506601
-allocateFrame 24448d66
-allocateFrame 6702e2c1
-allocateFrame 66f60524
-allocateFrame 44c6676c
-allocateFrame 42444c6
-allocateFrame 67032454
-allocateFrame 88671053
-allocateFrame b70f6667
-allocateFrame 2022444
-allocateFrame c6670124
-allocateFrame 448867f0
-allocateFrame 96602e6
-allocateFrame c166fff1
-allocateFrame 14808b
-allocateFrame 66672e0c
-allocateFrame 438b6667
-allocateFrame 5475c085
-Boot: grub structure at 00010000
-Mem: Placed 32464 pages (129856-kb) in freeList (126-kb) 
-Mem: Kernel stack 00105840 - 00109840
+Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 00113520
+Multiboot: ELF section 1 @ 00100000 (6270-bytes) .text
+Multiboot: ELF section 2 @ 00101880 (828-bytes) .rodata.str1.4
+Multiboot: ELF section 3 @ 00101bbc (305-bytes) .rodata.str1.1
+Multiboot: ELF section 4 @ 00101cf0 (2032-bytes) .eh_frame
+Multiboot: ELF section 5 @ 00103000 (10313-bytes) .data
+Multiboot: ELF section 6 @ 00106000 (27936-bytes) .bss
+Multiboot: ELF section 7 @ 0010cd20 (11029-bytes) .debug_info
+Multiboot: ELF section 8 @ 001024e0 (2739-bytes) .debug_abbrev
+Multiboot: ELF section 9 @ 0010f840 (10478-bytes) .debug_loc
+Multiboot: ELF section 10 @ 00112130 (160-bytes) .debug_aranges
+Multiboot: ELF section 11 @ 001121d0 (856-bytes) .debug_ranges
+Multiboot: ELF section 12 @ 00112530 (2268-bytes) .debug_line
+Multiboot: ELF section 13 @ 00112e10 (1793-bytes) .debug_str
+Multiboot: ELF section 14 @ 00102f93 (17-bytes) .comment
+Multiboot: ELF section 15 @ 00113520 (182-bytes) .shstrtab
+Multiboot: ELF section 16 @ 001135e0 (1184-bytes) .symtab
+Multiboot: ELF section 17 @ 00113a80 (711-bytes) .strtab
+Mem: Placed 32460 pages (129840-kb) in freeList (126-kb) 
+Mem: Kernel stack 001088a0 - 0010c8a0
 Mem: forceFrameAsPage 07fdf000 into directory 07fdf000 [31] table 00000000
 Mem: new page-table 07fde000
 Mem: forceFrameAsPage 07fde000 into directory 07fdf000 [31] table 07fde003
-Mem: kernel cr3=07fdf000
-Mem: forceFrameAsPage 00000000 into directory 07fdf000 [0] table 00000000
+Mem: forceFrameAsPage 000b8000 into directory 07fdf000 [0] table 00000000
 Mem: new page-table 07fdd000
 Mem: forceFrameAsPage 07fdd000 into directory 07fdf000 [31] table 07fde003
+Mem: kernel cr3=07fdf000
+Mem: forceFrameAsPage 00000000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 00001000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 00002000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 00003000 into directory 07fdf000 [0] table 07fdd003
@@ -129,134 +79,113 @@ Mem: forceFrameAsPage 0010d000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 0010e000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 0010f000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 00110000 into directory 07fdf000 [0] table 07fdd003
-Multiboot: flags=00001a67
-Multiboot: mmap=144 bytes @ 000100ac
-Multiboot: mmap region 0 639K @ 00000000
-Multiboot: mmap region 1 129920K @ 00100000
-Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 00101c41
-Multiboot: ELF section 1 @ 00100000 (4433-bytes) .text
-Multiboot: ELF section 2 @ 00101151 (198-bytes) .rodata.str1.1
-Multiboot: ELF section 3 @ 00101218 (472-bytes) .rodata.str1.4
-Multiboot: ELF section 4 @ 001013f0 (1216-bytes) .eh_frame
-Multiboot: ELF section 5 @ 00102000 (73-bytes) .data
-Multiboot: ELF section 6 @ 00103000 (29952-bytes) .bss
-Multiboot: ELF section 7 @ 0010a500 (8141-bytes) .debug_info
-Multiboot: ELF section 8 @ 0010c4d0 (2103-bytes) .debug_abbrev
-Multiboot: ELF section 9 @ 0010cd10 (7814-bytes) .debug_loc
-Multiboot: ELF section 10 @ 001018b0 (128-bytes) .debug_aranges
-Multiboot: ELF section 11 @ 00101930 (768-bytes) .debug_ranges
-Multiboot: ELF section 12 @ 0010eba0 (1688-bytes) .debug_line
-Multiboot: ELF section 13 @ 0010f240 (1285-bytes) .debug_str
-Multiboot: ELF section 14 @ 00101c30 (17-bytes) .comment
-Multiboot: ELF section 15 @ 00101c41 (182-bytes) .shstrtab
-Multiboot: ELF section 16 @ 0010f750 (960-bytes) .symtab
-Multiboot: ELF section 17 @ 00101cf7 (512-bytes) .strtab
-allocateFrame fc0039
-allocateFrame 392f3332
-allocateFrame 2f3630f0
-allocateFrame e05bea
-allocateFrame c36620e6
-allocateFrame 20b0c366
-allocateFrame 5e665b66
-allocateFrame 8c48366
-allocateFrame 5b66ffff
-allocateFrame e2eee866
-allocateFrame d8896600
-allocateFrame 1754db9
-allocateFrame 66506601
-allocateFrame 24448d66
-allocateFrame 6702e2c1
-allocateFrame 66f60524
-allocateFrame 44c6676c
-allocateFrame 42444c6
-allocateFrame 67032454
-allocateFrame 88671053
-freeFrame fc0039
-freeFrame 392f3332
-freeFrame 2f3630f0
-freeFrame e05bea
-freeFrame c36620e6
-freeFrame 20b0c366
-freeFrame 5e665b66
-freeFrame 8c48366
-freeFrame 5b66ffff
-freeFrame e2eee866
-allocateFrame d8896600
-allocateFrame 1754db9
-allocateFrame 66506601
-allocateFrame 24448d66
-allocateFrame 6702e2c1
-allocateFrame 66f60524
-allocateFrame 44c6676c
-allocateFrame 42444c6
-allocateFrame 67032454
-allocateFrame 88671053
-allocateFrame b70f6667
-allocateFrame 2022444
-allocateFrame c6670124
-allocateFrame 448867f0
-allocateFrame 96602e6
-allocateFrame c166fff1
-allocateFrame 14808b
-allocateFrame 66672e0c
-allocateFrame 438b6667
-allocateFrame 5475c085
+Mem: forceFrameAsPage 00111000 into directory 07fdf000 [0] table 07fdd003
+Mem: forceFrameAsPage 00112000 into directory 07fdf000 [0] table 07fdd003
+Mem: forceFrameAsPage 00113000 into directory 07fdf000 [0] table 07fdd003
+Mem: forceFrameAsPage 00114000 into directory 07fdf000 [0] table 07fdd003
 Boot: grub structure at 00010000
-Mem: Placed 32464 pages (129856-kb) in freeList (126-kb) 
-Mem: Kernel stack 00105840 - 00109840
-Mem: forceFrameAsPage 07fdf000 into directory 07fdf000 [31] table 00000000
-Mem: new page-table 07fde000
-Mem: forceFrameAsPage 07fde000 into directory 07fdf000 [31] table 07fde003
-Mem: kernel cr3=07fdf000
-Mem: forceFrameAsPage 00000000 into directory 07fdf000 [0] table 00000000
-Mem: new page-table 07fdd000
-Mem: forceFrameAsPage 07fdd000 into directory 07fdf000 [31] table 07fde003
-Mem: forceFrameAsPage 00001000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00002000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00003000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00004000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00005000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00006000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00007000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00008000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00009000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0000a000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0000b000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0000c000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0000d000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0000e000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0000f000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00010000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00011000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00012000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00013000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00014000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00015000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00016000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00017000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00018000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00019000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0001a000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0001b000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0001c000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0001d000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0001e000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0001f000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00020000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00100000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00101000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00102000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00103000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00104000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00105000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00106000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00107000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00108000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00109000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0010a000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0010b000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0010c000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0010d000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0010e000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 0010f000 into directory 07fdf000 [0] table 07fdd003
-Mem: forceFrameAsPage 00110000 into directory 07fdf000 [0] table 07fdd003
+Ignoring interrupt 32
+"Memes are dank" -- Abraham Lincoln
+Entering procedure kernel_main @ 001002f0
+allocateFrame 7fdc000
+allocateFrame 7fdb000
+allocateFrame 7fda000
+allocateFrame 7fd9000
+allocateFrame 7fd8000
+allocateFrame 7fd7000
+allocateFrame 7fd6000
+allocateFrame 7fd5000
+allocateFrame 7fd4000
+allocateFrame 7fd3000
+allocateFrame 7fd2000
+allocateFrame 7fd1000
+allocateFrame 7fd0000
+allocateFrame 7fcf000
+allocateFrame 7fce000
+allocateFrame 7fcd000
+allocateFrame 7fcc000
+allocateFrame 7fcb000
+allocateFrame 7fca000
+allocateFrame 7fc9000
+freeFrame 7fdc000
+freeFrame 7fdb000
+freeFrame 7fda000
+freeFrame 7fd9000
+Ignoring interrupt 33
+freeFrame 7fd8000
+freeFrame 7fd7000
+freeFrame 7fd6000
+freeFrame 7fd5000
+freeFrame 7fd4000
+freeFrame 7fd3000
+allocateFrame 7fd3000
+allocateFrame 7fd4000
+allocateFrame 7fd5000
+allocateFrame 7fd6000
+allocateFrame 7fd7000
+allocateFrame 7fd8000
+allocateFrame 7fd9000
+allocateFrame 7fda000
+allocateFrame 7fdb000
+allocateFrame 7fdc000
+allocateFrame 7fc8000
+allocateFrame 7fc7000
+allocateFrame 7fc6000
+allocateFrame 7fc5000
+allocateFrame 7fc4000
+allocateFrame 7fc3000
+allocateFrame 7fc2000
+allocateFrame 7fc1000
+allocateFrame 7fc0000
+allocateFrame 7fbf000
+Init: found init process on initrd, len=2724-bytes @ 00103449
+Mem: forceFrameAsPage 07fbe000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fbd000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fbc000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fbb000 into directory 07fdf000 [31] table 07fde023
+Section Header offset: 00000874
+SHeaders: 14 x 40-bytes
+STab index=11, section-offset=000007ed @00103c36
+Section 1: Name .text @08048054 length=59 file-offset=84
+cpVM: 0010349d -> 08048054 (59-bytes)
+Mem: forceFrameAsPage 07fba000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb9000 into directory 07fdf000 [31] table 07fde023
+cpVM: offset=00000054 below=08048000 above=08049000 frame=07fb9000
+Section 2: Name .rodata @08048090 length=13 file-offset=144
+cpVM: 001034d9 -> 08048090 (13-bytes)
+cpVM: offset=00000090 below=08048000 above=08049000 frame=07fb9000
+Section 3: Name .eh_frame @080480a0 length=96 file-offset=160
+cpVM: 001034e9 -> 080480a0 (96-bytes)
+cpVM: offset=000000a0 below=08048000 above=08049000 frame=07fb9000
+Mem: forceFrameAsPage 000b8000 into directory 07fbd000 [0] table 00000000
+Mem: new page-table 07fb8000
+Mem: forceFrameAsPage 07fb8000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb8000 into directory 07fbd000 [31] table 00000000
+Mem: new page-table 07fb7000
+Mem: forceFrameAsPage 07fb7000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb7000 into directory 07fbd000 [31] table 07fb7003
+processs page-dir[32] = 07fba007
+processs page-dir[32][72] = 07fb9007
+Mem: forceFrameAsPage 00100000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00101000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00102000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00103000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00104000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00105000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00106000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00107000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00108000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00109000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 0010a000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 0010b000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 0010c000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 0010d000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 0010e000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 0010f000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00110000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00111000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00112000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00113000 into directory 07fbd000 [0] table 07fb8003
+Mem: forceFrameAsPage 00114000 into directory 07fbd000 [0] table 07fb8003
+Syscall 1: arg0=08048090 arg1=00000000 arg2=07fbd000
+Syscall 0: arg0=08048086 arg1=07fbe000 arg2=07fbd000

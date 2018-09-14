@@ -1,12 +1,13 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include "serial.h"
 #include "mem.h"
 #include "x86.h"
-
+#include "pcb.h"
 uint8_t   gdtPtr[6];           // 48-bit structure to hold address of GDT.
 uint32_t  theGdt[16*2] = {0};  // The actual GDT
-uint32_t  systemTSS[26] __attribute__((aligned(4096))) = {0};
+
 
 void loadGdt()
 {
@@ -130,6 +131,7 @@ void initMemory(struct grubMMap *regions,
     	setCR3( pageDir );
     	memset((uint8_t*)pageDir,0,4096);
     	forceFrameAsPage(pageDir, pageDir);
+            forceFrameAsPage(pageDir, 0xb8000);
     	serialPrintf("Mem: kernel cr3=%08x\n", getCR3());
     	forceFramesAsPages((uint32_t*)pageDir, freeList, (uint32_t)(freeList+numFree) );
     	forceFramesAsPages((uint32_t*)pageDir, excludeLo, excludeHi);
@@ -185,4 +187,88 @@ void initMemory(struct grubMMap *regions,
 	{
 	    for(uint32_t i=0; i<size; i++)
 	        *(target++) = val;
+	}
+
+    void memcpy(uint8_t *target, uint8_t *target2, uint32_t size)
+    {
+        for(uint32_t i=0; i<size; i++)
+            *(target++)= *(target2++);
+    }
+
+    /*
+	   Ensure that a page is in the page-table structure at the target virtual
+	   address, allocating and inserting a table and then the page (only) if
+	   necessary. Return the linear address of the page. Also force the page
+	   into the kernel page-structures so that we can access it.
+	*/
+	uint32_t forceVirtualPage(Pcb *pcb, uint32_t vpage)
+	{
+	uint32_t tableNum = (vpage >> 22) & 0x3ffUL;
+	    if( pcb->pageDirectory[tableNum]==0 )
+	    {
+	        uint32_t frame = allocateFrame();
+	        pcb->pageDirectory[tableNum] = frame | 0x07UL; // User | RW | Present
+	        forceFrameAsPage(getCR3(), frame);
+	        memset(pcb->pageDirectory[tableNum],0,4096);
+	    }
+	uint32_t *table = (uint32_t*)(pcb->pageDirectory[tableNum]&0xfffff000UL);
+	uint32_t offset = (vpage >> 12) & 0x3ffUL;
+	    if( table[offset]==0 )
+	    {
+	        uint32_t frame = (uint32_t)allocateFrame();
+	        table[offset] = frame | 0x07UL; // User | RW | Present
+	        forceFrameAsPage(getCR3(), frame);
+	    }
+	    return table[offset] & 0xfffff000UL;
+	}
+
+	/*
+	   The interval in virtual memory might not be aligned with pages (i.e. if we are
+	   copying section from an ELF container). We need the forced inserts into the
+	   page-table to happen on page-aligned addresses. For the data copy we do not know
+	   that the target interval is contiguous (i.e. we are using the simplest single-page
+	   allocator).
+	*/
+
+	void copyIntoVirtual(uint8_t *source, uint32_t size, uint32_t virtualAddress, Pcb *pcb)
+	{
+	    serialPrintf("cpVM: %08x -> %08x (%u-bytes)\n",
+	                 source, virtualAddress, size);
+	    // If the low-end of the interval is not aligned with a page then handle
+	    // the alignment first by doing a chunk less than a page.
+	    if((virtualAddress&0xfffUL) != 0)
+	    {
+	        uint32_t pageBelow = virtualAddress & 0xfffff000UL;
+	        uint32_t offset    = virtualAddress & 0x00000fffUL;
+	        uint32_t pageAbove = pageBelow + 4096UL;
+
+	        uint8_t *frame = forceVirtualPage(pcb,pageBelow);
+	        if( virtualAddress+size < pageAbove )
+	        {
+	            serialPrintf("cpVM: offset=%08x below=%08x above=%08x frame=%08x\n",
+	                         offset, pageBelow, pageAbove, frame);
+	            memcpy(frame+offset, source, size);
+	            return;
+	        }
+	        memcpy(frame+offset, source, pageAbove - virtualAddress);
+	        size -= pageAbove-virtualAddress;
+	        virtualAddress = pageAbove;
+	    }
+
+	    // Life is easy in the middle: just do entire pages
+	    while(size>=4096)
+	    {
+	        uint8_t *frame = forceVirtualPage(pcb,virtualAddress);
+	        memcpy(frame, virtualAddress, 4096);
+	        virtualAddress += 4096;
+	        size -= 4096;
+	    }
+
+	    // If the high-end of the interval is not aligned with a page then do a chunk
+	    // less than a page.
+	    if(size>0)
+	    {
+	        uint8_t *frame = forceVirtualPage(pcb,virtualAddress);
+	        memcpy(frame, virtualAddress, size);
+	    }
 	}
