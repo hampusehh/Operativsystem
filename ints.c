@@ -47,7 +47,7 @@ uint8_t syscallGlue[] = {
     0x50,                          // push eax
     0x31, 0xc9,                    // xorl ecx, ecx
     0xb1, 0x00,                    // movb $0, cl  (gatenumber)
-    0x50, 0x56, 0x53,              // Push eax, esi, ebx
+    0x57, 0x56, 0x53,              // Push edi, esi, ebx
     0xe8, 0x01, 0x02, 0x03, 0x04,  // Call 0x04030201
     0x58,                          // pop  eax
     0x0f, 0x22, 0xd8,              // movl eax, cr3

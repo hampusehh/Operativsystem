@@ -111,7 +111,6 @@ freeFrame 7fdc000
 freeFrame 7fdb000
 freeFrame 7fda000
 freeFrame 7fd9000
-Ignoring interrupt 33
 freeFrame 7fd8000
 freeFrame 7fd7000
 freeFrame 7fd6000
@@ -187,5 +186,6 @@ Mem: forceFrameAsPage 00111000 into directory 07fbd000 [0] table 07fb8003
 Mem: forceFrameAsPage 00112000 into directory 07fbd000 [0] table 07fb8003
 Mem: forceFrameAsPage 00113000 into directory 07fbd000 [0] table 07fb8003
 Mem: forceFrameAsPage 00114000 into directory 07fbd000 [0] table 07fb8003
-Syscall 1: arg0=08048090 arg1=00000000 arg2=07fbd000
-Syscall 0: arg0=08048086 arg1=07fbe000 arg2=07fbd000
+Syscall 1: arg0=08048090 arg1=00000000 arg2=07fba007
+Syscall 0: arg0=08048086 arg1=07fbe000 arg2=07fba007
+Ignoring interrupt 33

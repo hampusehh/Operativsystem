@@ -17,7 +17,7 @@ bootp.iso: kernel.bin
 	./makeBootp.bash
 
 kernel.bin: linker.ld boot.o kernel.o serial.o mem.o ints.o initrd.o archive.o
-	i686-elf-gcc -g -T linker.ld -o kernel.bin -ffreestanding -O2 -nostdlib boot.o kernel.o serial.o mem.o ints.o  initrd.o archive.o -lgcc
+	i686-elf-gcc -g -T linker.ld -o kernel.bin -ffreestanding -O2 -nostdlib boot.o kernel.o serial.o mem.o ints.o initrd.o archive.o user-printf.o -lgcc
 
 boot.o: boot.s
 	i686-elf-as boot.s -o boot.o
@@ -42,6 +42,9 @@ dbg: disk.iso
 
 initrd.o: initrd.c initrd.h
 	i686-elf-gcc -g -c initrd.c -o initrd.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+
+user-printf.o: user-printf.c user-printf.h
+	i686-elf-gcc -g -c user-printf.c -o user-printf.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
 archive.tar: initrd/init
 	tar cf archive.tar initrd/
