@@ -2,25 +2,25 @@ Multiboot: flags=00001a67
 Multiboot: mmap=144 bytes @ 000100ac
 Multiboot: mmap region 0 639K @ 00000000
 Multiboot: mmap region 1 129920K @ 00100000
-Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 00113520
-Multiboot: ELF section 1 @ 00100000 (6270-bytes) .text
-Multiboot: ELF section 2 @ 00101880 (828-bytes) .rodata.str1.4
-Multiboot: ELF section 3 @ 00101bbc (305-bytes) .rodata.str1.1
-Multiboot: ELF section 4 @ 00101cf0 (2032-bytes) .eh_frame
+Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 001029cd
+Multiboot: ELF section 1 @ 00100000 (6366-bytes) .text
+Multiboot: ELF section 2 @ 001018e0 (868-bytes) .rodata.str1.4
+Multiboot: ELF section 3 @ 00101c44 (305-bytes) .rodata.str1.1
+Multiboot: ELF section 4 @ 00101d78 (2100-bytes) .eh_frame
 Multiboot: ELF section 5 @ 00103000 (10313-bytes) .data
 Multiboot: ELF section 6 @ 00106000 (27936-bytes) .bss
-Multiboot: ELF section 7 @ 0010cd20 (11029-bytes) .debug_info
-Multiboot: ELF section 8 @ 001024e0 (2739-bytes) .debug_abbrev
-Multiboot: ELF section 9 @ 0010f840 (10478-bytes) .debug_loc
-Multiboot: ELF section 10 @ 00112130 (160-bytes) .debug_aranges
-Multiboot: ELF section 11 @ 001121d0 (856-bytes) .debug_ranges
-Multiboot: ELF section 12 @ 00112530 (2268-bytes) .debug_line
-Multiboot: ELF section 13 @ 00112e10 (1793-bytes) .debug_str
-Multiboot: ELF section 14 @ 00102f93 (17-bytes) .comment
-Multiboot: ELF section 15 @ 00113520 (182-bytes) .shstrtab
-Multiboot: ELF section 16 @ 001135e0 (1184-bytes) .symtab
-Multiboot: ELF section 17 @ 00113a80 (711-bytes) .strtab
-Mem: Placed 32460 pages (129840-kb) in freeList (126-kb) 
+Multiboot: ELF section 7 @ 0010cd20 (11216-bytes) .debug_info
+Multiboot: ELF section 8 @ 0010f8f0 (2806-bytes) .debug_abbrev
+Multiboot: ELF section 9 @ 001103f0 (10841-bytes) .debug_loc
+Multiboot: ELF section 10 @ 001025ac (160-bytes) .debug_aranges
+Multiboot: ELF section 11 @ 0010264c (880-bytes) .debug_ranges
+Multiboot: ELF section 12 @ 00112e50 (2290-bytes) .debug_line
+Multiboot: ELF section 13 @ 00113750 (1798-bytes) .debug_str
+Multiboot: ELF section 14 @ 001029bc (17-bytes) .comment
+Multiboot: ELF section 15 @ 001029cd (182-bytes) .shstrtab
+Multiboot: ELF section 16 @ 00102a84 (1200-bytes) .symtab
+Multiboot: ELF section 17 @ 00113e60 (716-bytes) .strtab
+Mem: Placed 32459 pages (129836-kb) in freeList (126-kb) 
 Mem: Kernel stack 001088a0 - 0010c8a0
 Mem: forceFrameAsPage 07fdf000 into directory 07fdf000 [31] table 00000000
 Mem: new page-table 07fde000
@@ -83,10 +83,11 @@ Mem: forceFrameAsPage 00111000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 00112000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 00113000 into directory 07fdf000 [0] table 07fdd003
 Mem: forceFrameAsPage 00114000 into directory 07fdf000 [0] table 07fdd003
+Mem: forceFrameAsPage 00115000 into directory 07fdf000 [0] table 07fdd003
 Boot: grub structure at 00010000
 Ignoring interrupt 32
 "Memes are dank" -- Abraham Lincoln
-Entering procedure kernel_main @ 001002f0
+Entering procedure kernel_main @ 00100340
 allocateFrame 7fdc000
 allocateFrame 7fdb000
 allocateFrame 7fda000
@@ -137,25 +138,25 @@ allocateFrame 7fc2000
 allocateFrame 7fc1000
 allocateFrame 7fc0000
 allocateFrame 7fbf000
-Init: found init process on initrd, len=2724-bytes @ 00103449
+Init: found init process on initrd, len=7824-bytes @ 00103449
 Mem: forceFrameAsPage 07fbe000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fbd000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fbc000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fbb000 into directory 07fdf000 [31] table 07fde023
-Section Header offset: 00000874
+Section Header offset: 00001c60
 SHeaders: 14 x 40-bytes
-STab index=11, section-offset=000007ed @00103c36
-Section 1: Name .text @08048054 length=59 file-offset=84
-cpVM: 0010349d -> 08048054 (59-bytes)
+STab index=11, section-offset=00001bd8 @00105021
+Section 1: Name .text @08048054 length=917 file-offset=84
+cpVM: 0010349d -> 08048054 (917-bytes)
 Mem: forceFrameAsPage 07fba000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fb9000 into directory 07fdf000 [31] table 07fde023
 cpVM: offset=00000054 below=08048000 above=08049000 frame=07fb9000
-Section 2: Name .rodata @08048090 length=13 file-offset=144
-cpVM: 001034d9 -> 08048090 (13-bytes)
-cpVM: offset=00000090 below=08048000 above=08049000 frame=07fb9000
-Section 3: Name .eh_frame @080480a0 length=96 file-offset=160
-cpVM: 001034e9 -> 080480a0 (96-bytes)
-cpVM: offset=000000a0 below=08048000 above=08049000 frame=07fb9000
+Section 2: Name .rodata @080483ec length=13 file-offset=1004
+cpVM: 00103835 -> 080483ec (13-bytes)
+cpVM: offset=000003ec below=08048000 above=08049000 frame=07fb9000
+Section 3: Name .eh_frame @080483fc length=504 file-offset=1020
+cpVM: 00103845 -> 080483fc (504-bytes)
+cpVM: offset=000003fc below=08048000 above=08049000 frame=07fb9000
 Mem: forceFrameAsPage 000b8000 into directory 07fbd000 [0] table 00000000
 Mem: new page-table 07fb8000
 Mem: forceFrameAsPage 07fb8000 into directory 07fdf000 [31] table 07fde023
@@ -186,6 +187,8 @@ Mem: forceFrameAsPage 00111000 into directory 07fbd000 [0] table 07fb8003
 Mem: forceFrameAsPage 00112000 into directory 07fbd000 [0] table 07fb8003
 Mem: forceFrameAsPage 00113000 into directory 07fbd000 [0] table 07fb8003
 Mem: forceFrameAsPage 00114000 into directory 07fbd000 [0] table 07fb8003
-Syscall 1: arg0=08048090 arg1=00000000 arg2=07fba007
-Syscall 0: arg0=08048086 arg1=07fbe000 arg2=07fba007
+Mem: forceFrameAsPage 00115000 into directory 07fbd000 [0] table 07fb8003
+Syscall 1: arg0=fffffec8 arg1=00000000 arg2=07fba007
+Case 1: offset=00000ec8 pt1=000003ff pt2=000003ff
+Syscall 0: arg0=080483e0 arg1=07fbe000 arg2=07fba007
 Ignoring interrupt 33

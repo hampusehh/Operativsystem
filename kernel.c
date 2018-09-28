@@ -51,9 +51,10 @@ void decodeElf(Pcb *pcb, uint32_t base, uint32_t length)
 	    }
 	}
 
+Pcb *pcb2;
 Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t size)
 	{
-	Pcb *pcb = (Pcb*)allocateFrame();
+	    Pcb *pcb = (Pcb*)allocateFrame();
 	    forceFrameAsPage(getCR3(),pcb);
 	    pcb->pageDirectory = allocateFrame();
 	    forceFrameAsPage(getCR3(), pcb->pageDirectory);
@@ -87,6 +88,7 @@ Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t 
 	       here so we can destroy the kernel stack in the process - each entry into the
 	       kernel for a handler will use a fresh stack.
 	    */
+      pcb2 = pcb;
 	    __asm__ __volatile__("  \
 	     cli; \n\
 	     mov   $0x2b, %%ax; \n\
@@ -127,6 +129,20 @@ Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t 
       case 0:
           __asm__ __volatile("sti  \n\
                               jmp waiting");    // Reenable interrupts, mainloop.
+          break;
+     case 1:
+     if ((arg0 & 0xfffUL) != 0) {
+       uint32_t pt1 = (arg0 >> 22) & 0x3ffUL;
+       uint32_t pt2 = (arg0 >> 12) & 0x3ffUL;
+       uint32_t offset = arg0 & 0xfffUL;
+
+       serialPrintf("Case 1: offset=%08x pt1=%08x pt2=%08x\n",
+                        offset, pt1, pt2);
+     }
+
+          break;
+     case 2:
+
           break;
   }
 }

@@ -201,7 +201,7 @@ void initMemory(struct grubMMap *regions,
 	   necessary. Return the linear address of the page. Also force the page
 	   into the kernel page-structures so that we can access it.
 	*/
-	uint32_t forceVirtualPage(Pcb *pcb, uint32_t vpage)
+  uint32_t forceVirtualPage(Pcb *pcb, uint32_t vpage)
 	{
 	uint32_t tableNum = (vpage >> 22) & 0x3ffUL;
 	    if( pcb->pageDirectory[tableNum]==0 )
@@ -209,7 +209,7 @@ void initMemory(struct grubMMap *regions,
 	        uint32_t frame = allocateFrame();
 	        pcb->pageDirectory[tableNum] = frame | 0x07UL; // User | RW | Present
 	        forceFrameAsPage(getCR3(), frame);
-	        memset(pcb->pageDirectory[tableNum],0,4096);
+	        memset(frame,0,4096);   // Bug mentioned in assignment
 	    }
 	uint32_t *table = (uint32_t*)(pcb->pageDirectory[tableNum]&0xfffff000UL);
 	uint32_t offset = (vpage >> 12) & 0x3ffUL;

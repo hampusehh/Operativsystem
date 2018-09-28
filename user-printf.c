@@ -1,8 +1,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include "user-printf.h"
+#include <stdarg.h>
 #include "x86.h"
+#define COM1 0x3f8
 
 void init_serial() {
    outb(COM1 + 1, 0x00);    // Disable all interrupts
@@ -62,7 +63,7 @@ void serialString(uint8_t *str)
 
 
 	// Internal entry point after variadic args converted to va_list
-	void vPrintf(const char *fmt, va_list va)
+	void Vprintf(const char *fmt, va_list va)
 	{
 	char c;
 	uint8_t buffer[33];
@@ -142,6 +143,6 @@ void serialString(uint8_t *str)
 	{
 	va_list va;
 	    va_start(va,fmt);
-	    vPrintf(fmt, va);
+	    Vprintf(fmt, va);
 	    va_end(va);
 	}
