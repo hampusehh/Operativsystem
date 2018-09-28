@@ -4,8 +4,9 @@
 #include <stdarg.h>
 #include "x86.h"
 #define COM1 0x3f8
-
-void init_serial() {
+char printBuffer[300];
+int bufferIndex;
+void init_userPrint() {
    outb(COM1 + 1, 0x00);    // Disable all interrupts
    outb(COM1 + 3, 0x80);    // Enable DLAB (set baud rate divisor)
    outb(COM1 + 0, 0x03);    // Set divisor to 3 (lo byte) 38400 baud
@@ -15,18 +16,16 @@ void init_serial() {
    outb(COM1 + 4, 0x0B);    // IRQs enabled, RTS/DSR set
 }
 
-void serialByte(uint8_t c)
+void userPrintByte(uint8_t c)
 {
-    while( (inb(COM1+5) & 0x20) == 0)
-      ;
-    outb(COM1,c);
+  printBuffer[bufferIndex++] = c;
 }
 
 // Caution - this will act as a delay!
-void serialString(uint8_t *str)
+void userPrintString(uint8_t *str)
 {
   while(*str != 0)
-    serialByte(*(str++));
+    userPrintByte(*(str++));
 }
 #include <stdarg.h>
 
@@ -54,11 +53,11 @@ void serialString(uint8_t *str)
 	}
 
 
-	void serialPadding(uint8_t padChar, int len, int minLen)
+	void userPrintPadding(uint8_t padChar, int len, int minLen)
 	{
 	    if( len>=minLen )  return;
 	    for(int i=0; i<minLen-len; i++)
-	        serialByte(padChar);
+	        userPrintByte(padChar);
 	}
 
 
@@ -67,11 +66,12 @@ void serialString(uint8_t *str)
 	{
 	char c;
 	uint8_t buffer[33];
+  bufferIndex = 0;
 	    do
 	    {
 	        c = *(fmt++);
 	        if( c!=0 && c!='%' )
-	            serialByte(c);
+	            userPrintByte(c);
 	        else if( c==0 )
 	            break;
 	        else
@@ -97,40 +97,40 @@ void serialString(uint8_t *str)
 	            switch(c)
 	            {
 	                case 0:                    break;
-	                case '%': serialByte('%'); break;
+	                case '%': userPrintByte('%'); break;
 	                case 'd':
 	                    v = va_arg(va, int);
 	                    if(v>=0)
 	                        len = numAscii(v,10,buffer);
 	                    else
 	                    {
-	                        serialByte('-');
+	                        userPrintByte('-');
 	                        len = numAscii(-v,10,buffer);
 	                    }
-	                    serialPadding(pad, len, minLen);
-	                    serialString(buffer);
+	                    userPrintPadding(pad, len, minLen);
+	                    userPrintString(buffer);
 	                    break;
 	                case 'u':
 	                    v = va_arg(va, unsigned int);
 	                    len = numAscii(v,10,buffer);
-	                    serialPadding(pad, len, minLen);
-	                    serialString(buffer);
+	                    userPrintPadding(pad, len, minLen);
+	                    userPrintString(buffer);
 	                    break;
 	                case 'x':
 	                    v = va_arg(va, unsigned int);
 	                    len = numAscii(v,16,buffer);
-	                    serialPadding(pad, len, minLen);
-	                    serialString(buffer);
+	                    userPrintPadding(pad, len, minLen);
+	                    userPrintString(buffer);
 	                    break;
 	                case 'b':     // Unusual fmt-specifier - binary
 	                    v = va_arg(va, unsigned int);
 	                    len = numAscii(v,2,buffer);
-	                    serialPadding(pad, len, minLen);
-	                    serialString(buffer);
+	                    userPrintPadding(pad, len, minLen);
+	                    userPrintString(buffer);
 	                    break;
 	                case 's':
 	                    sptr = va_arg(va, uint8_t *);
-	                    serialString(sptr);
+	                    userPrintString(sptr);
 	                    break;
 	            }
 	        }
@@ -141,8 +141,9 @@ void serialString(uint8_t *str)
 	// The entry-point that we call
 	void printf(const char *fmt, ...)
 	{
-	va_list va;
+	   va_list va;
 	    va_start(va,fmt);
 	    Vprintf(fmt, va);
 	    va_end(va);
+      syscall(1,printBuffer, bufferIndex, 0);
 	}

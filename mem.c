@@ -128,6 +128,7 @@ void initMemory(struct grubMMap *regions,
 	    serialPrintf("Mem: Kernel stack %08x - %08x\n", stack_bottom, stack_top);
 
       uint32_t pageDir = (uint32_t)allocateFrame();
+      kernelPage = pageDir;
     	setCR3( pageDir );
     	memset((uint8_t*)pageDir,0,4096);
     	forceFrameAsPage(pageDir, pageDir);

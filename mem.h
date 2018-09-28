@@ -4,6 +4,7 @@
 #define CodeType  10   // Execute/Read, non-accessed, non-conforming
 uint32_t *freeList;
 uint32_t numFree;
+uint32_t kernelPage;
 #define min(x,y) ((x)<(y)?(x):(y))
 struct grubMMap {
 	  uint32_t base;

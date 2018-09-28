@@ -7,6 +7,7 @@
 #include "x86.h"
 #include "pcb.h"
 #include "initrd.h"
+extern uint32_t kernelPage;
 
 #if defined(__linux__)
 #error "You must use the cross-compiler, not the linux compiler!"
@@ -122,6 +123,7 @@ Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t 
     void __attribute__((fastcall)) syscallHandler(uint32_t gateNum, uint32_t callNum,
                    uint32_t arg0, uint32_t arg1, uint32_t arg2)
 {
+  setCR3(kernelPage);
   intCounters[ gateNum&255 ] ++;
   serialPrintf("Syscall %u: arg0=%08x arg1=%08x arg2=%08x\n", callNum, arg0, arg1, arg2);
   switch(callNum)
@@ -131,15 +133,19 @@ Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t 
                               jmp waiting");    // Reenable interrupts, mainloop.
           break;
      case 1:
-     if ((arg0 & 0xfffUL) != 0) {
+     serialPrintf("");
        uint32_t pt1 = (arg0 >> 22) & 0x3ffUL;
        uint32_t pt2 = (arg0 >> 12) & 0x3ffUL;
        uint32_t offset = arg0 & 0xfffUL;
 
        serialPrintf("Case 1: offset=%08x pt1=%08x pt2=%08x\n",
                         offset, pt1, pt2);
-     }
 
+	    uint32_t *table = (uint32_t*)(pcb2->pageDirectory[pt1]&0xfffff000UL);
+      uint32_t newTable = table[pt2]&0xfffff000UL;
+      uint32_t frame = newTable + offset;
+      forceFrameAsPage(kernelPage, frame);
+      serialPrintf((char*)frame);
           break;
      case 2:
 

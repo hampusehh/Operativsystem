@@ -11,11 +11,12 @@ void syscall(uint32_t number, uint32_t arg0, uint32_t arg1, uint32_t arg2)
 
 int main(int argc, char **argv)
 {
-  char charBuffer[300];
+  char charBuffer[300] = "letsgoo";
+
     syscall(1, (uint32_t)charBuffer, 0, 0);      // WRITE stdout
-//    printf("raw string\n");
-//    printf("number: %08x\n", 1234);
-//    printf("embedded string: %s\n", "inside");
+     printf("raw string\n");
+     printf("number: %08x\n", 1234);
+     printf("embedded string: %s\n", "inside");
 }
 
 /*
