@@ -2,24 +2,24 @@ Multiboot: flags=00001a67
 Multiboot: mmap=144 bytes @ 000100ac
 Multiboot: mmap region 0 639K @ 00000000
 Multiboot: mmap region 1 129920K @ 00100000
-Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 001029fd
-Multiboot: ELF section 1 @ 00100000 (6430-bytes) .text
-Multiboot: ELF section 2 @ 00101920 (868-bytes) .rodata.str1.4
-Multiboot: ELF section 3 @ 00101c84 (305-bytes) .rodata.str1.1
-Multiboot: ELF section 4 @ 00101db8 (2108-bytes) .eh_frame
+Multiboot: ELF header has 18 symbols @ 0001013c, each 40-bytes. String-table @ 00102a89
+Multiboot: ELF section 1 @ 00100000 (6510-bytes) .text
+Multiboot: ELF section 2 @ 00101970 (868-bytes) .rodata.str1.4
+Multiboot: ELF section 3 @ 00101cd4 (305-bytes) .rodata.str1.1
+Multiboot: ELF section 4 @ 00101e08 (2144-bytes) .eh_frame
 Multiboot: ELF section 5 @ 00103000 (20553-bytes) .data
 Multiboot: ELF section 6 @ 00109000 (27936-bytes) .bss
-Multiboot: ELF section 7 @ 0010fd20 (11438-bytes) .debug_info
-Multiboot: ELF section 8 @ 001129d0 (2806-bytes) .debug_abbrev
-Multiboot: ELF section 9 @ 001134d0 (10759-bytes) .debug_loc
-Multiboot: ELF section 10 @ 001025f4 (160-bytes) .debug_aranges
-Multiboot: ELF section 11 @ 00102694 (856-bytes) .debug_ranges
-Multiboot: ELF section 12 @ 00115ee0 (2311-bytes) .debug_line
-Multiboot: ELF section 13 @ 001167f0 (1809-bytes) .debug_str
-Multiboot: ELF section 14 @ 001029ec (17-bytes) .comment
-Multiboot: ELF section 15 @ 001029fd (182-bytes) .shstrtab
-Multiboot: ELF section 16 @ 00102ab4 (1216-bytes) .symtab
-Multiboot: ELF section 17 @ 00116f10 (727-bytes) .strtab
+Multiboot: ELF section 7 @ 0010fd20 (11524-bytes) .debug_info
+Multiboot: ELF section 8 @ 00112a30 (2843-bytes) .debug_abbrev
+Multiboot: ELF section 9 @ 00113550 (10805-bytes) .debug_loc
+Multiboot: ELF section 10 @ 00102668 (160-bytes) .debug_aranges
+Multiboot: ELF section 11 @ 00102708 (880-bytes) .debug_ranges
+Multiboot: ELF section 12 @ 00115f90 (2326-bytes) .debug_line
+Multiboot: ELF section 13 @ 001168b0 (1809-bytes) .debug_str
+Multiboot: ELF section 14 @ 00102a78 (17-bytes) .comment
+Multiboot: ELF section 15 @ 00102a89 (182-bytes) .shstrtab
+Multiboot: ELF section 16 @ 00116fd0 (1216-bytes) .symtab
+Multiboot: ELF section 17 @ 00102b3f (727-bytes) .strtab
 Mem: Placed 32456 pages (129824-kb) in freeList (126-kb) 
 Mem: Kernel stack 0010b8a0 - 0010f8a0
 Mem: forceFrameAsPage 07fdf000 into directory 07fdf000 [31] table 00000000
@@ -90,7 +90,7 @@ Mem: forceFrameAsPage 00118000 into directory 07fdf000 [0] table 07fdd003
 Boot: grub structure at 00010000
 Ignoring interrupt 32
 "Memes are dank" -- Abraham Lincoln
-Entering procedure kernel_main @ 00100370
+Entering procedure kernel_main @ 001003c0
 allocateFrame 7fdc000
 allocateFrame 7fdb000
 allocateFrame 7fda000
@@ -141,29 +141,29 @@ allocateFrame 7fc2000
 allocateFrame 7fc1000
 allocateFrame 7fc0000
 allocateFrame 7fbf000
-Init: found init process on initrd, len=8252-bytes @ 00103449
+Init: found init process on initrd, len=8716-bytes @ 00103449
 Mem: forceFrameAsPage 07fbe000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fbd000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fbc000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fbb000 into directory 07fdf000 [31] table 07fde023
-Section Header offset: 00001de4
-SHeaders: 15 x 40-bytes
-STab index=12, section-offset=00001d58 @001051a1
-Section 1: Name .text @08048074 length=1025 file-offset=116
-cpVM: 001034bd -> 08048074 (1025-bytes)
+Section Header offset: 00001f8c
+SHeaders: 16 x 40-bytes
+STab index=13, section-offset=00001ef3 @0010533c
+Section 1: Name .text @08048074 length=1084 file-offset=116
+cpVM: 001034bd -> 08048074 (1084-bytes)
 Mem: forceFrameAsPage 07fba000 into directory 07fdf000 [31] table 07fde023
 Mem: forceFrameAsPage 07fb9000 into directory 07fdf000 [31] table 07fde023
 cpVM: offset=00000074 below=08048000 above=08049000 frame=07fb9000
-Section 2: Name .rodata @08048478 length=69 file-offset=1144
-cpVM: 001038c1 -> 08048478 (69-bytes)
-cpVM: offset=00000478 below=08048000 above=08049000 frame=07fb9000
-Section 3: Name .eh_frame @080484c0 length=548 file-offset=1216
-cpVM: 00103909 -> 080484c0 (548-bytes)
-cpVM: offset=000004c0 below=08048000 above=08049000 frame=07fb9000
-Section 4: Name .bss @08049700 length=304 file-offset=1792
-cpVM: 00103b49 -> 08049700 (304-bytes)
+Section 2: Name .eh_frame @080484b0 length=576 file-offset=1200
+cpVM: 001038f9 -> 080484b0 (576-bytes)
+cpVM: offset=000004b0 below=08048000 above=08049000 frame=07fb9000
+Section 3: Name .data @080496f0 length=25 file-offset=1776
+cpVM: 00103b39 -> 080496f0 (25-bytes)
 Mem: forceFrameAsPage 07fb8000 into directory 07fdf000 [31] table 07fde023
-cpVM: offset=00000700 below=08049000 above=0804a000 frame=07fb8000
+cpVM: offset=000006f0 below=08049000 above=0804a000 frame=07fb8000
+Section 4: Name .bss @08049720 length=304 file-offset=1801
+cpVM: 00103b52 -> 08049720 (304-bytes)
+cpVM: offset=00000720 below=08049000 above=0804a000 frame=07fb8000
 Mem: forceFrameAsPage 000b8000 into directory 07fbd000 [0] table 00000000
 Mem: new page-table 07fb7000
 Mem: forceFrameAsPage 07fb7000 into directory 07fdf000 [31] table 07fde023
@@ -198,19 +198,56 @@ Mem: forceFrameAsPage 00115000 into directory 07fbd000 [0] table 07fb7003
 Mem: forceFrameAsPage 00116000 into directory 07fbd000 [0] table 07fb7003
 Mem: forceFrameAsPage 00117000 into directory 07fbd000 [0] table 07fb7003
 Mem: forceFrameAsPage 00118000 into directory 07fbd000 [0] table 07fb7003
-Syscall 1: arg0=fffffec4 arg1=00000000 arg2=fffffff0
-Case 1: offset=00000ec4 pt1=000003ff pt2=000003ff
-Mem: forceFrameAsPage 07fbbec4 into directory 07fdf000 [31] table 07fde023
-letsgooSyscall 1: arg0=08049700 arg1=0000000b arg2=fffffff0
-Case 1: offset=00000700 pt1=00000020 pt2=00000049
-Mem: forceFrameAsPage 07fb8700 into directory 07fdf000 [31] table 07fde023
-raw string
-øSyscall 1: arg0=08049700 arg1=00000011 arg2=fffffff0
-Case 1: offset=00000700 pt1=00000020 pt2=00000049
-Mem: forceFrameAsPage 07fb8700 into directory 07fdf000 [31] table 07fde023
-number: 000004d2
-Syscall 1: arg0=08049700 arg1=00000018 arg2=fffffff0
-Case 1: offset=00000700 pt1=00000020 pt2=00000049
-Mem: forceFrameAsPage 07fb8700 into directory 07fdf000 [31] table 07fde023
-embedded string: inside
-Syscall 0: arg0=0804846c arg1=07fbe000 arg2=07fba007
+Syscall 2: arg0=0000a000 arg1=00000000 arg2=00000000
+Mem: forceFrameAsPage 07fb5000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb4000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb3000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb2000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb1000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fb0000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07faf000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fae000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fad000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fac000 into directory 07fdf000 [31] table 07fde023
+Mem: forceFrameAsPage 07fab000 into directory 07fdf000 [31] table 07fde023
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10000000 = 00
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10001000 = 01
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10002000 = 02
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10003000 = 03
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10004000 = 04
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10005000 = 05
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10006000 = 06
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10007000 = 07
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10008000 = 08
+Syscall 1: arg0=080496f0 arg1=00000018 arg2=00000000
+Case 1: offset=000006f0 pt1=00000020 pt2=00000049
+Mem: forceFrameAsPage 07fb86f0 into directory 07fdf000 [31] table 07fde023
+Address 0x10009000 = 09
+Page fault! errcode=00000001 addr=1000a00a

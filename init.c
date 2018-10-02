@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include "user-printf.c"
 
+/*
 const char msg[]="hello world\n";
 void syscall(uint32_t number, uint32_t arg0, uint32_t arg1, uint32_t arg2)
 {
@@ -18,8 +19,8 @@ int main(int argc, char **argv)
      printf("number: %08x\n", 1234);
      printf("embedded string: %s\n", "inside");
 }
+*/
 
-/*
 char scanMsg[] = "Address 0x10000000 = 00\n";
 	void syscall(uint32_t number, uint32_t arg0, uint32_t arg1, uint32_t arg2)
 	{
@@ -46,4 +47,3 @@ char scanMsg[] = "Address 0x10000000 = 00\n";
 	    }
 	    // 11th iteration should be outside the heap and trigger a page-fault.
 	}
-*/

@@ -125,6 +125,7 @@ Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t 
 {
   setCR3(kernelPage);
   intCounters[ gateNum&255 ] ++;
+
   serialPrintf("Syscall %u: arg0=%08x arg1=%08x arg2=%08x\n", callNum, arg0, arg1, arg2);
   switch(callNum)
   {
@@ -148,6 +149,13 @@ Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t 
       serialPrintf((char*)frame);
           break;
      case 2:
+
+     serialPrintf("");
+      int index = 0;
+      while(index < arg0){
+          forceVirtualPage(pcb2, 0x10000000 + index);
+          index += 4096;
+          }
 
           break;
   }
@@ -212,7 +220,7 @@ Pcb *createProcess(uint32_t kernelLo, uint32_t kernelHi, uint8_t *elf, uint32_t 
 	timer_phase(100);
 	setHandler(32, tickInterrupt);
 	setHandler(14, pfHandler);
-    setHandler(0x80, syscallHandler);
+  setHandler(0x80, syscallHandler);
 
   uint8_t *vga = (uint8_t*)0xb8000;
   const char msg[] = "Hello darkness, my old friend";
